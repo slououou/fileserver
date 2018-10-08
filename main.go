@@ -100,9 +100,13 @@ func pageHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	lists := make(map[int]string)
-
-	for i, file := range files {
-		lists[i] = file.Name()
+	i := int(0)
+	for _, file := range files {
+		s := file.Name()
+		if file.Mode()&os.ModeSymlink != 0 && s != "..data" {
+			lists[i] = s
+			i++
+		}
 	}
 	renderTemplate(w, listTmpl, listDataTmpl{
 		List: lists,
