@@ -1,6 +1,6 @@
 # fileserver
 
-A dead simple HTTP server to serve files.
+A HTTP server to serve files and redirect link.
 
 ```
 Usage of fileserver:
